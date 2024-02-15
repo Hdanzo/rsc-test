@@ -1,3 +1,134 @@
 {
-  "extends": "next/core-web-vitals"
+  "overrides": [
+    {
+      "extends": ["plugin:@typescript-eslint/recommended"],
+      "files": ["*.ts", "*.tsx"],
+      "parserOptions": {
+        "project": "tsconfig.json"
+      }
+    },
+    {
+      "files": ["**/components/ui/*.tsx"],
+      "rules": {
+        "react/prop-types": [2, { "ignore": ["className"] }],
+        "react-refresh/only-export-components": "off"
+      }
+    }
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint", "simple-import-sort", "import", "react"],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:jest-dom/recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime"
+  ],
+  "rules": {
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "no-duplicate-imports": "error",
+    "padding-line-between-statements": [
+      "warn",
+      { "blankLine": "always", "prev": "*", "next": "block" },
+      { "blankLine": "always", "prev": "block", "next": "*" },
+      { "blankLine": "always", "prev": "*", "next": "block-like" },
+      { "blankLine": "always", "prev": "block-like", "next": "*" },
+      { "blankLine": "always", "prev": "expression", "next": "expression" }
+    ],
+    "@typescript-eslint/ban-ts-comment": [
+      "error",
+      { "ts-ignore": "allow-with-description" }
+    ],
+    "@typescript-eslint/consistent-type-imports": "warn",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto",
+        "trailingComma": "es5",
+        "singleAttributePerLine": true
+      }
+    ],
+    //import
+    "import/no-unresolved": "error",
+    "import/no-absolute-path": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+    //import sort
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          ["^\\u0000"],
+          [
+            "^node:.*\\u0000$",
+            "^@?\\w.*\\u0000$",
+            "^[^.].*\\u0000$",
+            "^\\..*\\u0000$"
+          ],
+          ["^react$", "^react-dom$", "^node:"],
+          ["^next"],
+          // Packages.
+          // Things that start with a letter (or digit or underscore), or `@` followed by a letter.
+          ["^@?\\w"],
+          ["^~(/.*|$)"],
+          ["^@(/.*|$)"],
+          // Parent imports. Put `..` last.
+          ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+          // Other relative imports. Put same-folder imports and `.` last.
+          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+          ["^.+\\.s?css$"]
+        ]
+      }
+    ],
+    "simple-import-sort/exports": "error",
+    //React
+    "react/button-has-type": 2,
+    "react/hook-use-state": 2,
+    "react/jsx-boolean-value": 2,
+    "react/jsx-curly-brace-presence": [
+      2,
+      {
+        "propElementValues": "always"
+      }
+    ],
+    "react/jsx-child-element-spacing": 2,
+    "react/jsx-fragments": [2, "syntax"],
+    "react/jsx-first-prop-new-line": 2,
+    "react/jsx-handler-names": 2,
+    "react/jsx-no-leaked-render": 2,
+    "react/jsx-no-useless-fragment": 2,
+    "react/jsx-pascal-case": [2, { "allowNamespace": true }],
+    "react/jsx-sort-props": [2, { "ignoreCase": true, "locale": "en" }],
+    "react/jsx-max-props-per-line": [2, { "maximum": 1, "when": "always" }],
+    "react/jsx-tag-spacing": [2, { "beforeClosing": "never" }],
+    "react/jsx-wrap-multilines": [
+      2,
+      {
+        "declaration": "parens-new-line",
+        "assignment": "parens-new-line",
+        "return": "parens-new-line",
+        "arrow": "parens-new-line",
+        "condition": "parens-new-line",
+        "logical": "parens-new-line",
+        "prop": "parens-new-line"
+      }
+    ],
+    "react/no-object-type-as-default-prop": 2,
+    "react/self-closing-comp": 2,
+    "react/no-unknown-property": 0
+  },
+  "root": true
 }
